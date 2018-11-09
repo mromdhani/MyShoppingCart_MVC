@@ -14,15 +14,18 @@ namespace ShoppingCart.Web
         {
 			var container = new UnityContainer();
 
-            var repoMock = new Mock<IProductsRepository>();
-            repoMock.Setup(o => o.FindAll()).Returns(
+            var mockProducts = new Mock<IProductsRepository>();
+            mockProducts.Setup(m => m.FindAll()).Returns(
                 new List<Product> {
-                    new Product {ProductId= "P001",Name="Cafe", PhotoFile="Cafe.png", UnitPrice=1.2M },
-                    new Product {ProductId= "P002",Name="Cake", PhotoFile="cake.png", UnitPrice=1.2M },
-                    new Product {ProductId= "P003",Name="Chocolat", PhotoFile="chocolat.jpg", UnitPrice=1.2M },
-                     new Product {ProductId= "P004",Name="The", PhotoFile="tea.jpg", UnitPrice=1.2M },
-                });
-            container.RegisterInstance<IProductsRepository>(repoMock.Object);
+                    new Product {ProductId="P1000", Name="Café", PhotoFile="cafe.png", UnitPrice=1.5M  },
+                    new Product {ProductId="P2000", Name="The", PhotoFile="the.jpg", UnitPrice=1.5M  },
+                    new Product {ProductId="P3000", Name="Chocolat", PhotoFile="chocolat.jpg", UnitPrice=1.5M  },
+                    new Product {ProductId="P4000", Name="Gateaux", PhotoFile="cake.jpg", UnitPrice=1.5M  },
+
+                }
+            );
+            container.RegisterInstance<IProductsRepository>(mockProducts.Object);
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

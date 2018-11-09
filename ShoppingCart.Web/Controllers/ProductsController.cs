@@ -9,7 +9,7 @@ namespace ShoppingCart.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        private IProductsRepository repo;
+        private IProductsRepository repo;  // Injecté par Unity
 
         public ProductsController(IProductsRepository repo)
         {
