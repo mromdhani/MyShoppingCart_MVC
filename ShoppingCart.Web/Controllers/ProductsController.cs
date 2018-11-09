@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoppingCart.Core.Facade;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,11 +7,17 @@ using System.Web.Mvc;
 
 namespace ShoppingCart.Web.Controllers
 {
-    public class HomeController : Controller
+    public class ProductsController : Controller
     {
+        private IProductsRepository repo;
+
+        public ProductsController(IProductsRepository repo)
+        {
+            this.repo = repo;
+        }
         public ActionResult Index()
         {
-            return View();
+            return View(repo.FindAll());
         }
 
         public ActionResult About()
